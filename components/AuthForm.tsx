@@ -6,8 +6,6 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/router";
-import { mutate } from "swr";
-import { PLASMIC_AUTH_DATA_KEY } from "../utils/cache-keys";
 
 export interface AuthFormProps extends DefaultAuthFormProps {}
 
@@ -32,7 +30,7 @@ function AuthForm_(props: AuthFormProps, ref: HTMLElementRefOf<"div">) {
     } else {
       await supabaseClient.auth.signUp(credentials);
     }
-    await mutate(PLASMIC_AUTH_DATA_KEY);
+   
     router.push("/");
   }}
    />
